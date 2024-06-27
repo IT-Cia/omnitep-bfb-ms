@@ -15,11 +15,7 @@ builder.WebHost.UseKestrel(options =>
         o.CheckCertificateRevocation = false;
     });
     options.Listen(IPAddress.Loopback, builder.Configuration.GetValue<int>("PortNumber"));
-    options.Listen(IPAddress.Loopback, builder.Configuration.GetValue<int>("PortNumberSSL"),
-    listenOptions =>
-    {
-         listenOptions.UseHttps("omnitep.pfx", "omnitep-bfb-ms-pwd");
-    });
+    options.Listen(IPAddress.Loopback, builder.Configuration.GetValue<int>("PortNumberSSL"));
 });
 
 var httpHandler = new HttpClientHandler
