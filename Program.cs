@@ -36,6 +36,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<GrpcService>();
 
+builder.WebHost.UseUrls(Environment.GetEnvironmentVariable("APP_URL") ?? "http://localhost:5000");
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
