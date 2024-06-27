@@ -16,13 +16,11 @@ namespace omnitep_bfb_ms.Controllers
     {
         private GrpcService grpc;
         private IConfiguration configuration;
-        private Notifications.notifications.notificationsClient client;
 
-        public NotificationController(GrpcService grpc, IConfiguration configuration, Notifications.notifications.notificationsClient client)
+        public NotificationController(GrpcService grpc, IConfiguration configuration)
         {
             this.grpc = grpc;
             this.configuration = configuration;
-            this.client = client;
         }
 
         [HttpPost]
@@ -42,9 +40,7 @@ namespace omnitep_bfb_ms.Controllers
             //try
             //{
             
-            var channel = GrpcChannel.ForAddress(configuration.GetValue<string>("GrpcUrl"));
-            var client = new Notifications.notifications.notificationsClient(channel);
-            var response = await client.SendAsync(request);
+            var response = await grpc.GetClient().SendAsync(request);
             return new OkObjectResult(response);
             //}
             //catch (RpcException ex)Ö
