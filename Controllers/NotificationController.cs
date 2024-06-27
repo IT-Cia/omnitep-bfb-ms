@@ -42,12 +42,12 @@ namespace omnitep_bfb_ms.Controllers
             //try
             //{
             
-            //var channel = GrpcChannel.ForAddress(configuration.GetValue<string>("GrpcUrl"));
-            //var client = new Notifications.notifications.notificationsClient(channel);
+            var channel = GrpcChannel.ForAddress(configuration.GetValue<string>("GrpcUrl"));
+            var client = new Notifications.notifications.notificationsClient(channel);
             var response = await client.SendAsync(request);
             return new OkObjectResult(response);
             //}
-            //catch (RpcException ex)
+            //catch (RpcException ex)Ö
             //{
             //    return new BadRequestObjectResult(ex.Status.StatusCode + ": " + ex.Status.Detail);
             //}

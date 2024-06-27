@@ -9,14 +9,13 @@ builder.WebHost.UseKestrel(options =>
 {
     options.ConfigureHttpsDefaults(o =>
     {
-        //o.ClientCertificateValidation += ValidateClientCertificate;
         o.AllowAnyClientCertificate();
         o.ClientCertificateMode = ClientCertificateMode.RequireCertificate;
         o.CheckCertificateRevocation = false;
     });
 });
 
-var httpHandler = new HttpClientHandler
+/*var httpHandler = new HttpClientHandler
 {
     ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
 };
@@ -27,7 +26,7 @@ builder.Services.AddGrpcClient<Notifications.notifications.notificationsClient>(
 }).ConfigureChannel(o =>
 {
     o.HttpHandler = httpHandler;
-});
+});*/
 
 builder.Services.AddControllersWithViews();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
