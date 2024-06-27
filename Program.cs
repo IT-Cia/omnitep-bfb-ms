@@ -29,7 +29,7 @@ builder.Services.AddGrpcClient<Notifications.notifications.notificationsClient>(
     o.HttpHandler = httpHandler;
 });
 
-builder.Services.AddControllers();
+builder.Services.AddControllersWithViews();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -47,7 +47,7 @@ var app = builder.Build();
     app.UseSwaggerUI();
 //}
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
