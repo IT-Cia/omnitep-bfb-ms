@@ -35,7 +35,7 @@ func main() {
 	//task.AddRoutes(group)
 	notifications.AddRoutes(group)
 
-	engine.Run(config.CLIENT_HTTP_ADDRESS)
+	engine.Run(":8080")
 }
 
 func generateTLSCreds() (credentials.TransportCredentials, error) {
