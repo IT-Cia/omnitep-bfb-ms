@@ -1,0 +1,150 @@
+basePath: /api
+definitions:
+  emptypb.Empty:
+    type: object
+  taskpb.CreateRequest:
+    properties:
+      title:
+        type: string
+    type: object
+  taskpb.CreateResponse:
+    properties:
+      id:
+        type: integer
+      title:
+        type: string
+    type: object
+  taskpb.GetAllResponse:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/taskpb.Task'
+        type: array
+    type: object
+  taskpb.GetResponse:
+    properties:
+      id:
+        type: integer
+      title:
+        type: string
+    type: object
+  taskpb.Task:
+    properties:
+      id:
+        type: integer
+      title:
+        type: string
+    type: object
+  taskpb.UpdateRequest:
+    properties:
+      id:
+        type: integer
+      title:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: Golang Swagger Architectures endpoints
+  title: GSA API
+  version: "1.0"
+paths:
+  /task:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: page
+        in: query
+        name: page
+        type: integer
+      - description: size
+        in: query
+        name: size
+        type: integer
+      - description: term
+        in: query
+        name: term
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/taskpb.GetAllResponse'
+      tags:
+      - Authentication
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/taskpb.CreateRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/taskpb.CreateResponse'
+      tags:
+      - Authentication
+  /task/{id}:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/emptypb.Empty'
+      tags:
+      - Authentication
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/taskpb.GetResponse'
+      tags:
+      - Authentication
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/taskpb.UpdateRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/emptypb.Empty'
+      tags:
+      - Authentication
+securityDefinitions:
+  BasicAuth:
+    type: basic
+swagger: "2.0"

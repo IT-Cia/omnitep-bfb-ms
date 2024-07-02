@@ -1,7 +1,6 @@
 syntax = "proto3";
 
-//option go_package = "go/notifications";
-option csharp_namespace = "Notifications";
+option go_package = "go/notifications";
 
 package notifications;
 
