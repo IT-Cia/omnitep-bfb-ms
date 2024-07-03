@@ -33,5 +33,9 @@ func Send(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, res)
+	//b, err := json.Marshal(res)
+	//jsonData := []byte(b)
+	//c.Data(http.StatusOK, "application/json", jsonData)
+	c.IndentedJSON(http.StatusOK, res)
+	//c.JSON(http.StatusOK, res)
 }
