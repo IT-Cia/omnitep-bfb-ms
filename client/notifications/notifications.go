@@ -1,6 +1,7 @@
 package notifications
 
 import (
+	"encoding/json"
 	"gsm/go/notifications"
 	"net/http"
 
@@ -33,9 +34,9 @@ func Send(c *gin.Context) {
 		return
 	}
 
-	//b, err := json.Marshal(res)
-	//jsonData := []byte(b)
-	//c.Data(http.StatusOK, "application/json", jsonData)
-	c.IndentedJSON(http.StatusOK, res)
+	b, err := json.Marshal(res)
+	jsonData := []byte(b)
+	c.Data(http.StatusOK, "application/json", jsonData)
+	//c.IndentedJSON(http.StatusOK, res)
 	//c.JSON(http.StatusOK, res)
 }
